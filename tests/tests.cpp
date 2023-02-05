@@ -4,9 +4,10 @@
  * Tests for the sorting project.
  */
 
-#include <cstdlib>  // for rand()
+#include <cstdlib>   // for rand()
 #include <algorithm> // for sort(), is_sorted()
 #include <vector>
+#include <iostream>  // for operator<< 
 
 #include "gtest/gtest.h"
 #include "sorter.h"
@@ -43,7 +44,15 @@ public:
 
 private:
     int _x, _y;
+
+friend ostream& operator<<(ostream&, const foo&);
+
 };
+
+ostream& operator<<(ostream& out, const foo& f) {
+    out << "foo(" << f._x << ", " << f._y << ")";
+    return out;
+}
 
 TEST(SorterTest, IntBaseCase0K2) {
     vector<int> a;
